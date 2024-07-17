@@ -1,0 +1,4 @@
+djangorestframework 
+pyyaml 
+reqeusts 
+django-core-headers 
