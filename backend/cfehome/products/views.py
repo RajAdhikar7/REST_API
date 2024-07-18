@@ -6,7 +6,14 @@ from rest_framework import generics
 from .models import Product
 from .serializers import ProductSerializer
 
-class ProductCreateAPIView(generics.CreateAPIView):
+
+'''
+    ListCreateAPIView inherits from both ListAPIView and CreateAPIView, combining their functionality.
+
+    GET Request: Used to list all instances of a model.
+    POST Request: Used to create a new instance of the model.
+'''
+class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     
@@ -22,11 +29,20 @@ class ProductCreateAPIView(generics.CreateAPIView):
         serializer.save(content=content)
         
 
-product_create_view = ProductCreateAPIView.as_view()
+product_list_create_view = ProductListCreateAPIView.as_view()
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     # lookup_field = 'pk' (by default)
 
-product_detail_view = ProductDetailAPIView.as_view()
+product_detail_view = ProductDetailAPIView.as_view() 
+
+class ProductListAPIView(generics.ListAPIView):
+    '''
+    Not gonna use this method
+    '''
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+product_list_view = ProductListAPIView.as_view() 
