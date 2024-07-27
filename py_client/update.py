@@ -3,8 +3,8 @@ import requests
 endpoint = "http://localhost:8000/api/products/1/update/" 
 
 data = {
-    "title": "Hello world",
-    "price": 0.00
+    "title": "This Is Water park",
+    "price": 34.00
 }
 
 get_response = requests.put(endpoint, json=data) 
