@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 # from django.http import Http404
 from django.shortcuts import get_object_or_404
-
+from .permissions import IsStaffEditorPermission
 from .models import Product
 from .serializers import ProductSerializer
 
@@ -19,7 +19,7 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     authentication_classes = [authentication.SessionAuthentication]
-    permission_classes = [permissions.DjangoModelPermissions]
+    permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
 
 
 
