@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from .permissions import IsStaffEditorPermission
 from .models import Product
 from .serializers import ProductSerializer
-
+from api.authentication import TokenAuthentication
 
 '''
     ListCreateAPIView inherits from both ListAPIView and CreateAPIView, combining their functionality.
@@ -18,7 +18,10 @@ from .serializers import ProductSerializer
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    authentication_classes = [authentication.SessionAuthentication]
+    authentication_classes = [
+        authentication.SessionAuthentication,
+        TokenAuthentication
+    ]
     permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
 
 
